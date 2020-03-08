@@ -1,6 +1,6 @@
 // Custom Http Module
 function customHttp() {
-    return { //get
+    return {
         get(url, cb) {
             try {
                 const xhr = new XMLHttpRequest();
@@ -23,7 +23,7 @@ function customHttp() {
                 cb(error);
             }
         },
-        //post
+
         post(url, body, headers, cb) {
             try {
                 const xhr = new XMLHttpRequest();
