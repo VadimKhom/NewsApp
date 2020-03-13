@@ -75,14 +75,14 @@ const newService = (function() {
 })();
 
 //Elements
-const form = document.forms['newsControls'];
-const countrySelect = form.elements['country'];
-const searchInput = form.elements['search'];
+const form = document.forms["newsControls"];
+const countrySelect = form.elements["country"];
+const searchInput = form.elements["search"];
 
-form.addEventListener('submit', e => {
+form.addEventListener("submit", e => {
     e.preventDefault();
     loadNews();
-})
+});
 
 //  init selects
 document.addEventListener("DOMContentLoaded", function() {
@@ -92,7 +92,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
 //load news function
 function loadNews() {
-    newService.topHeadlines("ua", onGetResponse);
+    const country = countrySelect.value;
+    const searchText = searchInput.value;
+    if (!searchText) {
+        newService.topHeadlines(country, onGetResponse);
+    } else {
+        newService.everything(searchText, onGetResponse);
+    }
 }
 
 //Function on get response from server
