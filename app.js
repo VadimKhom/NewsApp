@@ -103,6 +103,10 @@ function loadNews() {
 
 //Function on get response from server
 function onGetResponse(err, res) {
+    if (err) {
+        showAlert(err, "error-msg");
+        return;
+    }
     renderNews(res.articles);
 }
 
@@ -137,4 +141,8 @@ function newsTemplate({ urlToImage, title, url, description }) {
         </div> 
     </div>
 `;
+}
+
+function showAlert(msg, type = "success") {
+    M.toast({ html: msg, classes: type });
 }
