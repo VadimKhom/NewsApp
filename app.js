@@ -107,12 +107,19 @@ function onGetResponse(err, res) {
         showAlert(err, "error-msg");
         return;
     }
+    if (!res.articles.length) {
+        //show empty message
+    }
+
     renderNews(res.articles);
 }
 
 //Function render news
 function renderNews(news) {
     const newsContainer = document.querySelector(".news-container .row");
+    if (newsContainer.children.length) {
+        clearContainer(newsContainer);
+    }
     let fragment = "";
 
     news.forEach(newsItem => {
@@ -121,6 +128,16 @@ function renderNews(news) {
     });
 
     newsContainer.insertAdjacentHTML(`afterbegin`, fragment);
+}
+
+//Function clear container
+function clearContainer(container) {
+    //container.innerHTML='';
+    let child = container.lastElementChild;
+    while (child) {
+        container.removeChild(child);
+        child = container.lastElementChild;
+    }
 }
 
 //News item template function
