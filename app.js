@@ -92,6 +92,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 //load news function
 function loadNews() {
+    showLoader();
     const country = countrySelect.value;
     const searchText = searchInput.value;
     if (!searchText) {
@@ -162,4 +163,13 @@ function newsTemplate({ urlToImage, title, url, description }) {
 
 function showAlert(msg, type = "success") {
     M.toast({ html: msg, classes: type });
+}
+// Show loader function
+function showLoader() {
+    document.body.insertAdjacentHTML(
+        "afterbegin",
+        `<div class="progress">
+            <div class="indeterminate"></div>
+        </div>`
+    );
 }
