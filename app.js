@@ -93,6 +93,7 @@ document.addEventListener("DOMContentLoaded", function() {
 //load news function
 function loadNews() {
     showLoader();
+
     const country = countrySelect.value;
     const searchText = searchInput.value;
     if (!searchText) {
@@ -104,6 +105,8 @@ function loadNews() {
 
 //Function on get response from server
 function onGetResponse(err, res) {
+    removePreloader();
+
     if (err) {
         showAlert(err, "error-msg");
         return;
@@ -172,4 +175,12 @@ function showLoader() {
             <div class="indeterminate"></div>
         </div>`
     );
+}
+
+//Remove loader function
+function removePreloader() {
+    const loader = document.querySelector(".progress");
+    if (loader) {
+        loader.remove();
+    }
 }
